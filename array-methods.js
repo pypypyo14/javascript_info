@@ -43,9 +43,9 @@ function copySorted(arr) {
 
 // task: array-get-names
 
-let john = { name: "John", surname: "Smith", id: 1 };
-let pete = { name: "Pete", surname: "Hunt", id: 2 };
-let mary = { name: "Mary", surname: "Key", id: 3 };
+let john = { name: "John", surname: "Smith", age: 25 };
+let pete = { name: "Pete", surname: "Hunt", age: 30 };
+let mary = { name: "Mary", surname: "Key", age: 29 };
 
 let users = [john, pete, mary];
 
@@ -58,6 +58,38 @@ let usersMapped = users.map((item) => ({
 }));
 
 // task: sort-object
+function sortByName(arr) {
+    arr.sort((a, b) => b.name < a.name ? 1 : -1);
+}
+
 // task: shuffle
+function shuffle(arr) {
+    // ランダムで負の数〜正の数.
+    // バイアスが発生するので Fisher-Yates shuffle を別途勉強する。。
+    arr.sort((a, b) => Math.random() - 0.5);
+}
+
 // task: avarage-age
+function getAverageAge(users) {
+    // ダサ回答。配列のデータにもとづいて単一の値を計算する場合はreduceが使える
+    // let i = 0;
+    // let sum = 0;
+    // while (i < users.length) {
+    //     sum += users[i].age;
+    //     i++;
+    // }
+    // return sum / i;
+    return users.reduce((sum, user) => sum + user.age, 0) / users.length; // 0はsumの初期値
+}
+
 // task: array-unique
+let strings = ["Hare", "Krishna", "Hare", "Krishna",
+    "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
+
+function unique(arr) {
+    return arr.filter((str, index, arr) => {
+        // arr.indexOf(str) = この要素が現れる最初のindex
+        return arr.indexOf(str) === index;
+    })
+}
